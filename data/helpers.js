@@ -8,10 +8,10 @@ const helpers = {
         .select('i.name', 'r.quantity')
         .where({ recipe_id }),
 
-    getInstructions: recipe_id => db('recipe_ingredients as r')
-        .join('steps as s', 'r.recipe_id', '=', 's.recipe_id')
-        .select('s.instructions')
+    getInstructions: recipe_id => db('steps as s')
+        .select('s.step_number', 's.instructions')
         .where({ recipe_id })
+        .orderBy('step_number')
 };
 
 module.exports = helpers;
