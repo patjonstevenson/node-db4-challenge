@@ -30,6 +30,7 @@ exports.up = function (knex) {
         .createTable('steps', tbl => {
             tbl.increments();
             tbl.string('instructions', 1048);
+            tbl.integer('step_number').unsigned();
             tbl
                 .integer('recipe_id')
                 .unsigned()
