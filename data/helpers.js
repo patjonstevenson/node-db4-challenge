@@ -11,7 +11,12 @@ const helpers = {
     getInstructions: recipe_id => db('steps as s')
         .select('s.step_number', 's.instructions')
         .where({ recipe_id })
-        .orderBy('step_number')
+        .orderBy('step_number'),
+
+    getRecipesByIngredients: ingredient_id => db('recipe_ingredients as i')
+        .join('recipes as r', 'i.recipe_id', '=', 'recipe_id')
+        .select('r.name')
+        .where({ ingredient_id })
 };
 
 module.exports = helpers;

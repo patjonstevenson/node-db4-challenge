@@ -29,7 +29,12 @@ router.get("/recipes/:id/instructions", async (req, res) => {
 });
 
 router.get("/ingredients/:id/recipes", async (req, res) => {
-    
+    try {
+        const recipes = await db.getRecipesByIngredients(req.params.id);
+        res.status(200).json(recipes);
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error when getting the recipes that use the ingredient", error })
+    }
 });
 
 module.exports = router;
