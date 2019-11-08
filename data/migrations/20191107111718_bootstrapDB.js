@@ -42,8 +42,8 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-    knex.schema.dropTable('steps');
-    knex.schema.dropTable('recipe_ingredients');
-    knex.schema.dropTable('ingredients');
-    knex.schema.dropTable('recipe');
+    return knex.schema.dropTable('steps')
+        .dropTable('recipe_ingredients')
+        .dropTable('ingredients')
+        .dropTable('recipe');
 };
